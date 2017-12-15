@@ -21,31 +21,51 @@ public class Deck
 		}
 	}
 	
-	public static boolean isEmpty(ArrayList<Card> cards)
+	public boolean isEmpty()
 	{
-		if(cards.size() == 0)
+		if(unDealt.size() == 0)
 		{
 			return true;
 		}
 		return false;
 	}
 	
-	public static int size(ArrayList<Card> cards)
+	public int size()
 	{
-		return cards.size();
+		return unDealt.size();
 	}
 	
-	public Card deal(ArrayList<Card> cards)
+	public Card deal()
 	{
-		if(!isEmpty(cards))
+		if(!isEmpty())
 		{
-			Card x = cards.get((int) Math.random() * cards.size());
+			Card x = unDealt.get((int) Math.random() * this.size());
 			Dealt.add(x);
-			int y = Dealt.indexOf(x);
-			return Dealt.get(y);
+			return x;
 		}
 		
 		return null;
+	}
+	
+	public void shuffle()
+	{
+		int k = 0;
+		int r = 0;
+		
+		for(int i = 0; i < Dealt.size(); i++)
+		{
+			unDealt.add(i, Dealt.get(i));
+			Dealt.remove(i);
+		}
+		while(k > 1)
+		{
+			r = ((int)Math.random()*51);
+			Card temp1 = Dealt.get(k);
+			Card temp2 = Dealt.get(r);
+			Dealt.set(k, temp2);
+			Dealt.set(r, temp1);
+			k--;
+		}
 	}
 
 }
