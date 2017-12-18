@@ -25,7 +25,7 @@ public class Card {
 	{
 		return "{ " + this.getRank() + " " + this.getSuit() + " " + this.getPointValue() + " }";
 	}
-	
+
 	public String getRank()
 	{
 		return this.rank;
